@@ -3,9 +3,13 @@
 ## Prerequisitions
 
 h5py
+
 numpy
+
 pytorch
+
 scipy \(optional\)
+
 matplotlib \(optional\)
 
 ## Brief Introduction
