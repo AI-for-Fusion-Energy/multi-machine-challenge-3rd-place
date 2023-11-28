@@ -28,32 +28,34 @@ def Generate_FFT(data_origin):
     phase = np.angle(half_fa)
     return amp,phase
 
-# if __name__ == "__main__":
-#     dir = cmod_dir+r"\CMod_train\1120000000\\"
-#     for filename in os.listdir(dir):
-#         shotno_str = filename.split(".")[0]
-#         print("Shotno: "+shotno_str)
-#         f = Get_One_Shot(dir+filename)
-#         time = Get_Time(f)
-#         print("Start/Down Time: ", time)
-#         IsDisrupt = Get_IsDisrupt(f)
-#         print("Disrupt: ",IsDisrupt)
+if __name__ == "__main__":
+    dir = cmod_dir+r"\CMod_train\1120000000\\"
+    for filename in os.listdir(dir):
+        shotno_str = filename.split(".")[0]
+        print("Shotno: "+shotno_str)
+        f = Get_One_Shot(dir+filename)
+        time = Get_Time(f)
+        print("Start/Down Time: ", time)
+        IsDisrupt = Get_IsDisrupt(f)
+        print("Disrupt: ",IsDisrupt)
 
-#         a = Get_Data_Entry(f,'\\MAGNETICS::TOP.ACTIVE_MHD.SIGNALS:BP01_GHK')
-#         plt.plot(a)
-#         plt.show()
-#         amp,phase = Generate_FTGraph(a,200)
+        a = Get_Data_Entry(f,'\\MAGNETICS::TOP.ACTIVE_MHD.SIGNALS:BP01_GHK')
+        plt.plot(a)
+        plt.show()
+        amp,phase = Generate_FTGraph(a,200,50)
 
-#         shape_amp = np.shape(amp)
-#         x = np.arange(shape_amp[0])
-#         y = np.arange(shape_amp[1])
-#         X,Y = np.meshgrid(x,y)
+        shape_amp = np.shape(amp)
+        x = np.arange(shape_amp[0])
+        y = np.arange(shape_amp[1])
+        X,Y = np.meshgrid(x,y)
 
-#         fig = plt.figure()
-#         ax = fig.add_subplot(111, projection='3d')
-#         ax.plot_surface(X.transpose(),Y.transpose(),amp)
-#         plt.show()
-#         fig = plt.figure()
-#         ax = fig.add_subplot(111, projection='3d')
-#         ax.plot_surface(X.transpose(),Y.transpose(),phase)
-#         plt.show()
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+        ax.plot_surface(X.transpose(),Y.transpose(),amp)
+        ax.set_xlabel('time')
+        ax.set_ylabel('frequency')
+        plt.show()
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+        ax.plot_surface(X.transpose(),Y.transpose(),phase)
+        plt.show()
